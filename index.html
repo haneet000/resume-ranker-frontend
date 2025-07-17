@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resume Ranker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 Resume Ranker</h1>
+
+    <form id="resumeForm">
+      <label for="job_description">Job Description:</label>
+      <textarea id="job_description" name="job_description" rows="5" required></textarea>
+
+      <label for="resume_pdf">Upload Resume (PDF):</label>
+      <input type="file" id="resume_pdf" name="resume_pdf" accept=".pdf" required />
+
+      <button type="submit">Evaluate Resume</button>
+    </form>
+
+    <!-- 🔄 Loading Message -->
+    <div id="loading" class="hidden loading-box">
+      ⏳ Evaluating Resume...
+    </div>
+
+    <!-- ✅ Result Box -->
+    <div id="result" class="result-box hidden">
+      <h2>Match Result</h2>
+      <p><strong>Score:</strong> <span id="score"></span></p>
+      <p><strong>Fit:</strong> <span id="fit"></span></p>
+      <p><strong>Summary:</strong></p>
+      <div class="excerpt" id="excerpt"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
