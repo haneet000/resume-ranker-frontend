@@ -2,38 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Resume Ranker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🚀 Resume Ranker | AI-Powered Resume Matching</title>
+  <meta name="description" content="AI-driven resume matching for the future of hiring." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" crossorigin="anonymous"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <div id="particles-js"></div>
+
   <div class="container">
-    <h1>🚀 Resume Ranker</h1>
-
-    <form id="resumeForm">
-      <label for="job_description">Job Description:</label>
-      <textarea id="job_description" name="job_description" rows="5" required></textarea>
-
-      <label for="resume_pdf">Upload Resume (PDF):</label>
-      <input type="file" id="resume_pdf" name="resume_pdf" accept=".pdf" required />
-
-      <button type="submit">Evaluate Resume</button>
-    </form>
-
-    <!-- 🔄 Loading Message -->
-    <div id="loading" class="hidden loading-box">
-      ⏳ Evaluating Resume...
+    <div class="app-header">
+      <h1><span class="emoji"></span> Resume Ranker</h1>
+      <p class="subtitle">Supercharge your hiring with AI-powered match analysis</p>
     </div>
 
-    <!-- ✅ Result Box -->
-    <div id="result" class="result-box hidden">
-      <h2>Match Result</h2>
-      <p><strong>Score:</strong> <span id="score"></span></p>
-      <p><strong>Fit:</strong> <span id="fit"></span></p>
-      <p><strong>Summary:</strong></p>
-      <div class="excerpt" id="excerpt"></div>
+    <form id="resumeForm" class="glass-card" autocomplete="off">
+      <div class="input-group">
+        <label for="job_description">Job Description</label>
+        <textarea id="job_description" name="job_description" rows="6" placeholder="Paste the full job description here..." required></textarea>
+        <span class="input-focus"></span>
+      </div>
+      <div class="input-group">
+        <label for="resume_pdf">Upload Resume (PDF)</label>
+        <div class="custom-upload">
+          <input type="file" id="resume_pdf" name="resume_pdf" accept=".pdf" required />
+          <label for="resume_pdf" class="file-label">
+            <span class="file-icon"><i class="fas fa-cloud-upload-alt"></i></span>
+            <span class="file-text" id="fileText">Choose a file</span>
+            <span class="file-validated" id="fileValidated"></span>
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="primary-btn" aria-label="Evaluate Resume">
+        <span class="btn-text">Evaluate Resume</span>
+        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+      </button>
+    </form>
+
+    <div id="loading" class="loading-box glass-card hidden" aria-live="polite">
+      <div class="loading-animation">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <p>Evaluating Resume & Generating Insights...</p>
+    </div>
+
+    <div id="result" class="result-box glass-card hidden" aria-live="polite">
+      <div class="result-header">
+        <h2>Match Result</h2>
+        <div class="score-display">
+          <span class="score-label">MATCH SCORE</span>
+          <span class="score-value" id="score">—</span>
+        </div>
+      </div>
+      <div class="fit-indicator">
+        <span class="fit-label">Fit:</span>
+        <span class="fit-value" id="fit">—</span>
+      </div>
+      <div class="result-description">
+        <span class="result-label">Result:</span>
+        <span class="result-value" id="match_result">—</span>
+      </div>
+      <div class="summary-section">
+        <h3>Summary</h3>
+        <div class="excerpt" id="excerpt"></div>
+      </div>
+      <div class="raw-json">
+        <details>
+          <summary>View Raw API Response</summary>
+          <pre id="rawResponse"></pre>
+        </details>
+      </div>
+      <button type="button" class="secondary-btn" id="tryAgainBtn">
+        <span class="btn-text">Try Another Resume</span>
+      </button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <footer class="app-footer">
+    <p>© <span id="currentYear"></span> Resume Ranker. All systems go!</p>
+  </footer>
 </body>
 </html>
