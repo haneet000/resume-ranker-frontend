@@ -49,9 +49,7 @@ document.getElementById('resumeForm').addEventListener('submit', async (e) => {
     }
 
     const data = await response.json();
-    console.log('API Response:', data); // For debugging
 
-    // Display all fields
     document.getElementById('score').textContent = `${(data.match_score * 100).toFixed(0)}%`;
     document.getElementById('fit').textContent = data.fit.toString();
     document.getElementById('match_result').textContent = data.match_result;
